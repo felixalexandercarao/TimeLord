@@ -11,17 +11,25 @@ This work is licensed under a
 [cc-by-sa-image]: https://licensebuttons.net/l/by-sa/4.0/88x31.png
 [cc-by-sa-shield]: https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg
 
-## Nani?
+TimeLord is a simple web-based mobile game event countdown timer. (Emphasis on the word "simple" -- I
+literally knocked this out in like 2 hours.)
 
-So, yeah, I'm 
+## But why?
 
-There are many great countdown apps for mobile devices; but the problem with those is that they don't sync data
-across multiple devices. (At least none that I could find did.) And I typically play on one of several different
-devices -- phone, tablet and/or computer -- depending on the situation. Having to maintain the same list of event
-timers on each different device was getting to be a royal pain.
+So, yeah, I love mobile games. And I am insane enough to be playing several of them. And there's always a ton of
+events whose dates I want to keep track of -- when an event starts and ends, when a gacha banner starts and ends,
+etc. And, as if that weren't hard enough, they tend to use different timezones -- some use UTC, some use Japan
+Standard Time, some use UTC+8 (those are the Chinese ones), etc. And my puny brain can't keep track of all of this
+and do all the timezone conversions. Surely there must be a better way? (and don't call me Shirley...)
 
+Well yeah there is. We're living in THE FUTURE (zura) after all. There are many great countdown apps for mobile
+devices. But there are several problems with these. First, many of them don't support different timezones. And,
+even worse, they don't sync data across multiple devices. (At least none that I could find did.) And I typically
+play on one of several different devices -- phone, tablet and/or computer -- depending on the situation. Having to
+maintain the same list of event timers on each different device was getting to be a royal pain.
 
-Emphasis on the word "simple" -- I literally knocked this out in like 2 hours 
+So I was bored one night and though to myself "shouldn't there be a web app for this?" Well surprisingly there
+wasn't. (At least none that I could find.) And so I decided, right on the spot, to make one.
 
 ## How do I use this?
 
