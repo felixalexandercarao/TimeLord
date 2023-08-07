@@ -38,7 +38,9 @@ You'll need to add information on the games you play, and the events you want to
 file. This file is in [JSON format](https://en.wikipedia.org/wiki/JSON) and should be fairly self-explanatory.
 Just copypasta the example info I have in there and change it to your liking.
 
-Note that when specifying timezones, you will need to specify by their [TZ identifier](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+Note that when specifying timezones, you will need to specify by their [TZ identifier](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). You can usually find out a game's
+timezone by browsing through their in-game news/announcements, or ask around in the game's subreddit (or if all
+else fails, good old [/r/gachagaming](https://www.reddit.com/r/gachagaming/).)
 
 Once you've added/updated the event info you want to track, you'll need to get this code up onto the Web somehow.
 If you have a web server, just stick the files in a directory and Bob's your uncle. If you don't have a Web server,
