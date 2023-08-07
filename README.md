@@ -54,4 +54,5 @@ Your event counter should now be accessible at `https://yourusername.github.io/T
 - Handle data refreshing better (automatically check for updates periodically, don't make the user reload the browser)
 - Ability to create and edit events within the web app
   - this is probably a distant goal, as it would probably require some sort of server back-end
+- Add info on when day reset is for each game
 - make the code less hacky in general
