@@ -1,14 +1,19 @@
 {
   "games": {
+    "EPIC7": {
+      "name": "Epic Seven",
+      "timezone": "Etc/GMT",
+      "dayReset": "10:00"
+    },
     "NIKKE": {
       "name": "GODDESS OF VICTORY: NIKKE",
       "timezone": "Etc/GMT+9",
       "dayReset": "04:00"
     },
-    "EPIC7": {
-      "name": "Epic Seven",
-      "timezone": "Etc/GMT",
-      "dayReset": "10:00"
+    "SIF2": {
+      "name": "Love Live! School idol festival 2 MIRACLE LIVE!",
+      "timezone": "Asia/Tokyo",
+      "dayReset": "00:00"
     },
     "SNOWBREAK": {
       "name": "Snowbreak: Containment Zone",
