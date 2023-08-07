@@ -29,7 +29,8 @@ play on one of several different devices -- phone, tablet and/or computer -- dep
 maintain the same list of event timers on each different device was getting to be a royal pain.
 
 So I was bored one night and though to myself "shouldn't there be a web app for this?" Well surprisingly there
-wasn't. (At least none that I could find.) And so I decided, right on the spot, to make one.
+wasn't. (At least none that I could find.) And so I decided, right on the spot, to make one. (Yeah, I'm kinda
+impulsive like that...)
 
 ## How do I use this?
 
