@@ -52,8 +52,8 @@ Your event counter should now be accessible at `https://yourusername.github.io/T
 
 ## TODO's
 
-- Needs to look nicer
-  - Group games under their own header (with one of those disclosure triangles that let you show/hide an entire section)
+- Needs to look nicer in general (but not TOO fancy)
+  - ~~Group games under their own header (with one of those disclosure triangles that let you show/hide an entire section)~~  Done. Except for the disclosure triangle bit. Real dumb idea.
 - Handle data refreshing better (automatically check for updates periodically, don't make the user reload the browser)
 - Ability to create and edit events within the web app
   - this is probably a distant goal, as it would probably require some sort of server back-end
