@@ -19,6 +19,11 @@
       "name": "Snowbreak: Containment Zone",
       "timezone": "Etc/GMT+8",
       "dayReset": "04:00"
+    },
+    "TEST": {
+      "name": "Test Game",
+      "timezone": "Etc/GMT",
+      "dayReset": "00:00"
     }
   },
   "events": {
@@ -35,6 +40,23 @@
       },
       {
         "event": "Some Past Event",
+        "start": "2023-06-03 04:59:59",
+        "end": "2023-06-24 04:59:59"
+      }
+    ],
+    "TEST": [
+      {
+        "event": "Test Current Event",
+        "start": "2023-08-03 04:59:59",
+        "end": "2023-08-24 04:59:59"
+      },
+      {
+        "event": "Test Future Event",
+        "start": "2023-09-03 04:59:59",
+        "end": "2023-09-24 04:59:59"
+      },
+      {
+        "event": "Test Past Event",
         "start": "2023-06-03 04:59:59",
         "end": "2023-06-24 04:59:59"
       }
