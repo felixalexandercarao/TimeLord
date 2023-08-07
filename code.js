@@ -27,7 +27,8 @@ function timezoneForGame(game) {
 
 function updateCountdown() {
     const keys = Object.keys(allEvents);
-
+    var big_nasty_html_string = "";
+    
     if (keys.length == 0) {
       console.log("No events found");
       // should probably put this in the html
@@ -39,7 +40,17 @@ function updateCountdown() {
     const countdownContainer = $("#main");
     countdownContainer.empty();
     const now = moment.tz(moment(), userTimezone); // Replace with your current timezone
-    
+
+/*
+  <!--Row with two equal columns-->
+  <div class="row">
+    <div class="col-md-6">Column left</div>
+    <div class="col-md-6">
+    Column right<br />
+    And again<br />
+    And again<br /></div>
+  </div>
+*/    
     keys.forEach(function (game) {
       console.log(game);
       const gameName = nameForGame(game);
@@ -48,6 +59,7 @@ function updateCountdown() {
         return;
       }
 
+      big_nasty_html_string += '<div class="row"><div class="col-md-6"><h2>' + gameName + '</h2></div><div class="col-md-6">';
       const eventTimezone = timezoneForGame(game);
       allEvents[game].forEach(function (event) {
         console.log(event);
@@ -85,13 +97,14 @@ function updateCountdown() {
         const minutes = duration.minutes();
         const seconds = duration.seconds();
 
-        const newDiv = $('<div>').addClass("countdown-timer");
-        newDiv.html('<h3>[' + gameName + '] ' + event.event + '</h3>');
-        newDiv.append(tag + " in ");
-        newDiv.append(`${days}d ${hours}h ${minutes}m ${seconds}s`);
-        countdownContainer.append(newDiv);
+        big_nasty_html_string += '<h3>' + event.event + '</h3><h5>';
+        big_nasty_html_string += tag + " in ";
+        big_nasty_html_string += `${days}d ${hours}h ${minutes}m ${seconds}s</h5>`;
       });
+    big_nasty_html_string += '</div>';
     });
+  console.log(big_nasty_html_string);
+  countdownContainer.html(big_nasty_html_string);
 }
 
 $(document).ready(function() {
