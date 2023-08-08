@@ -52,6 +52,8 @@ Seems ass-backward, but apparently [it's a weird timezone database thing](https:
 What can you do? `¯\_(ツ)_/¯` (Yeah, this one totally didn't have me banging my head against a brick wall for hours
 on end.)
 
+**ANOTHER IMPORTANT NOTE:** Beware! Some games can be confusing and inconsistent as to what timezone they use when displaying times in various parts of the game. For example, Epic Seven shows times in the server's time zone (UTC) in the news & announcement screen; however **the date and time shown on the actual gacha screen is in your local time zone**. The late lamented SIF All Stars did one better; their app automagically translated all times to your local timezone, anywhere and everywhere in the app. (yes, Klab actually did something right for once. Shocking, I know.)
+
 Once you've added/updated the event info you want to track, you'll need to get this code up onto the Web somehow.
 If you have a web server, just stick the files in a directory and Bob's your uncle. If you don't have a Web server,
 then you can "cheat" using GitHub Pages -- they will host it for free, with
@@ -66,7 +68,7 @@ Your event counter should now be accessible at `https://yourusername.github.io/T
   - ~~Group games under their own header (with one of those disclosure triangles that let you show/hide an entire section)~~  Done. Except for the disclosure triangle bit. Real dumb idea.
   - ~~the columns are not lining up, and I have no idea why~~ fixed it, apparently I don't know how to bootstrap.js :P
   - use alternate highlighting for each game row to make it easier to tell them apart
-  - responsivity (is that a word?) is still kinda meh, the app looks like ass on my iPhone
+  - ~~responsivity (is that a word?) is still kinda meh, the app looks like ass on my iPhone~~ this looks a bit better now too
 - Handle data refreshing better (automatically check for updates periodically, don't make the user reload the browser)
 - Ability to create and edit events within the web app
   - this is probably a distant goal, as it would probably require some sort of server back-end
