@@ -38,7 +38,7 @@ You'll need to add information on the games you play, and the events you want to
 file. This file is in [JSON format](https://en.wikipedia.org/wiki/JSON) and should be fairly self-explanatory.
 Just copypasta the example info I have in there and change it to your liking.
 
-Note that when specifying timezones, you will need to specify by their [TZ identifier](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). You can usually find out a game's
+Note that when specifying timezones, you will need to specify by their [TZ identifier](https://www.ibm.com/docs/en/cloudpakw3700/2.3.0.0?topic=SS6PD2_2.3.0/doc/psapsys_restapi/time_zone_list.htm). You can usually find out a game's
 timezone by browsing through their in-game news/announcements, or ask around in the game's subreddit (or if all
 else fails, good old [/r/gachagaming](https://www.reddit.com/r/gachagaming/).)
 
