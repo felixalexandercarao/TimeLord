@@ -1,14 +1,39 @@
 {
   "games": {
+    "ARKNIGHTS": {
+      "name": "Arknights",
+      "timezone": "Etc/UTC+7",
+      "dayReset": "04:00"
+    },
+    "BA": {
+      "name": "Blue Archive",
+      "timezone": "Etc/UTC",
+      "dayReset": "19:00"
+    },
     "EPIC7": {
       "name": "Epic Seven",
       "timezone": "Etc/GMT",
       "dayReset": "10:00"
     },
+    "FGO": {
+      "name": "Fate/Grand Order",
+      "timezone": "US/Pacific",
+      "dayReset": "21:00"
+    },
     "HSR": {
       "name": "Honkai: Star Rail",
       "timezone": "Etc/GMT+5",
       "dayReset": "04:00"
+    },
+    "MAGIRECO": {
+      "name": "Magia Record",
+      "timezone": "Asia/Tokyo",
+      "dayReset": "00:00"
+    },
+    "NC": {
+      "name": "Neural Cloud",
+      "timezone": "Etc/GMT+8",
+      "dayReset": "05:00"
     },
     "NIKKE": {
       "name": "GODDESS OF VICTORY: NIKKE",
@@ -29,11 +54,6 @@
       "name": "Snowbreak: Containment Zone",
       "timezone": "Etc/GMT-8",
       "dayReset": "04:00"
-    },
-    "TEST": {
-      "name": "Test Game",
-      "timezone": "Asia/Tokyo",
-      "dayReset": "00:00"
     }
   },
   "events": {
@@ -66,23 +86,6 @@
         "event": "Summer Ranpha",
         "start": "2023-07-31 12:00",
         "end": "2023-08-09 11:59"
-      }
-    ],
-    "TEST": [
-      {
-        "event": "Test Current Event",
-        "start": "2023-08-03 04:59",
-        "end": "2023-08-24 04:59"
-      },
-      {
-        "event": "Test Future Event",
-        "start": "2023-09-03 04:59",
-        "end": "2023-09-24 04:59"
-      },
-      {
-        "event": "Test Past Event",
-        "start": "2023-06-03 04:59",
-        "end": "2023-06-24 04:59"
       }
     ]
   }
