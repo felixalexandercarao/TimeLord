@@ -201,7 +201,6 @@ $(document).ready(function() {
       }
   });
   
-  updateCountdown();
   if (enableConstantUpdates) {
     setInterval(updateCountdown, 1000);
   } else {
@@ -209,4 +208,3 @@ $(document).ready(function() {
     updateCountdown();
   }
 });
-
