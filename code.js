@@ -3,7 +3,9 @@ var allGames = {};
 var allEvents = [];
 
 // only turn this on if you really like the idea of lots and lots of console spew
-const debug = false;
+const debug = true;
+// it's useful to turn this off while debugging, so you don't get spew every second
+const enableConstantUpdates = false;
 
 function getUserTimezone() {
   const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -103,9 +105,9 @@ function updateCountdown() {
       const drTillMinutes = tillNextDay.minutes();
       const drTillSeconds = tillNextDay.seconds();
 
-      big_nasty_html_string += '<div class="row"><div class="col-md-6"><h2>' + gameName + '</h2></div><div class="col-md-6">';
+      // big_nasty_html_string += '<div class="row"><div class="col-md-6"><h2>' + gameName + '</h2></div><div class="col-md-6">';
 
-//       big_nasty_html_string += '<div class="row"><div class="col-md-6"><h2>' + gameName + '</h2>Day Resets At: ' + drHours + ':' + drMinutes + ':' + drSeconds + '<br />In ' + drTillHours + ':' + drTillMinutes + ':' + drTillSeconds + '</div><div class="col-md-6">';
+      big_nasty_html_string += '<div class="row"><div class="col-md-6"><h2>' + gameName + '</h2>Day Resets At: ' + drHours + ':' + drMinutes + ':' + drSeconds + '<br />In ' + drTillHours + ':' + drTillMinutes + ':' + drTillSeconds + '</div><div class="col-md-6">';
       allEvents[game].forEach(function (event) {
 //         if (debug) console.log(event);
         if (gameTimezone == null) {
@@ -184,6 +186,11 @@ $(document).ready(function() {
   });
   
   updateCountdown();
-  setInterval(updateCountdown, 1000);
+  if (enableConstantUpdates) {
+    setInterval(updateCountdown, 1000);
+  } else {
+    // just one update
+    updateCountdown();
+  }
 });
 
