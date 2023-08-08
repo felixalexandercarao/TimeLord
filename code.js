@@ -3,9 +3,9 @@ var allGames = {};
 var allEvents = [];
 
 // only turn this on if you really like the idea of lots and lots of console spew
-const debug = true;
+const debug = false;
 // it's useful to turn this off while debugging, so you don't get spew every second
-const enableConstantUpdates = false;
+const enableConstantUpdates = true;
 
 function getUserTimezone() {
   const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
