@@ -17,8 +17,8 @@ literally knocked this out in like 2 hours.)
 ## But why?
 
 So, yeah, I love mobile games. And I am insane enough to be playing several of them. And there's always a ton of
-events whose dates I want to keep track of -- when an event starts and ends, when a gacha banner starts and ends,
-etc. And, as if that weren't hard enough, they tend to use different timezones -- some use UTC, some use Japan
+events whose dates I want to keep track of -- in-game events, gacha banners, anniversaries, long-ass maintenances,
+that sort of thing. And, as if that weren't hard enough, they tend to use different timezones -- some use UTC, some use Japan
 Standard Time, some use UTC+8 (those are the Chinese ones), etc. And my puny brain can't keep track of all of this
 and do all the timezone conversions. Surely there must be a better way? (and don't call me Shirley...)
 
