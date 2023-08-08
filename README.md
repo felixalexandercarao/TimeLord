@@ -71,5 +71,5 @@ Your event counter should now be accessible at `https://yourusername.github.io/T
 - Ability to create and edit events within the web app
   - this is probably a distant goal, as it would probably require some sort of server back-end
   - when/if this gets worked on, will probably end up turning this thing into a NodeJS app
-- ~~Add info on when day reset is for each game, in your local timezone (countdown timer would be neat too)~~  Done. Sorta. It's still a hot mess, and is definitely a work in progress, plus has some bugs, but it kinda works now.
+- ~~Add info on when day reset is for each game, in your local timezone (countdown timer would be neat too)~~  ~~Done. Sorta. It's still a hot mess, and is definitely a work in progress, plus has some bugs, but it kinda works now.~~  OK, got it working now. The "still a hot mess" part still applies though. :-P
 - make the code less hacky in general
