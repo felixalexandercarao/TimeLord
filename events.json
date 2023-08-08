@@ -7,7 +7,7 @@
     },
     "HSR": {
       "name": "Honkai: Star Rail",
-      "timezone": "Etc/UTC+5",
+      "timezone": "Etc/GMT+5",
       "dayReset": "04:00"
     },
     "NIKKE": {
