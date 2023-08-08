@@ -2,6 +2,9 @@ var userTimezone = "America/Los_Angeles";       // a sensible default
 var allGames = {};
 var allEvents = [];
 
+// only turn this on if you really like the idea of lots and lots of console spew
+const debug = false;
+
 function getUserTimezone() {
   const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
   return tz;
@@ -11,7 +14,7 @@ function nameForGame(game) {
   if (game in allGames) {
     return allGames[game].name;
   } else {
-    console.log("ERROR: unknown game `" + game + "'")
+    if (debug) console.log("ERROR: unknown game `" + game + "'");
     return null;
   }
 }
@@ -30,11 +33,11 @@ function updateCountdown() {
     var big_nasty_html_string = "";
     
     if (keys.length == 0) {
-      console.log("No events found");
+      if (debug) console.log("No events found");
       // should probably put this in the html
       return;
     } else {
-      console.log("Found " + keys.length + " games");
+      if (debug) console.log("Found " + keys.length + " games");
     }
 
     const countdownContainer = $("#main");
@@ -52,34 +55,43 @@ function updateCountdown() {
   </div>
 */    
     keys.forEach(function (game) {
-      console.log(game);
+      if (debug) console.log(game);
       const gameName = nameForGame(game);
       if (gameName == null) {
-        console.log("could not look up game");
+        if (debug) console.log("could not look up game");
         return;
       }
 
       big_nasty_html_string += '<div class="row"><div class="col-md-6"><h2>' + gameName + '</h2></div><div class="col-md-6">';
       const eventTimezone = timezoneForGame(game);
       allEvents[game].forEach(function (event) {
-        console.log(event);
-        if (eventTimezone == null) {
-          console.log("could not look up timezone");
+//         if (debug) console.log(event);
+        if (gameTimezone == null) {
+          if (debug) console.log("could not look up timezone");
           return;
         }
-      
-        const startDate = moment.tz(event.start, eventTimezone);
-        const endDate = moment.tz(event.end, eventTimezone);
+
+        if (debug) console.log("parse " + event.start + " and " + event.end + " as " + gameTimezone);
+        const startDate = moment.tz(event.start, gameTimezone);
+        const endDate = moment.tz(event.end, gameTimezone);
+
+        if (debug) console.log("START");
+        if (debug) console.log(startDate.format());
+        if (debug) console.log("END");
+        if (debug) console.log(endDate.format());
 
         var tag = "";
         var targetDate;
       
-        if (now.isBefore(startDate, 'day')) {
-          console.log("event " + event.event + " is in THE FUTURE (zura)");
+        if (now.isAfter(endDate)) {
+          if (debug) console.log("event " + event.event + " is but a distant memory");
+          return;
+        } else if (now.isBefore(startDate)) {
+          if (debug) console.log("event " + event.event + " is in THE FUTURE (zura)");
           targetDate = startDate;
           tag = "Starts";
-        } else if (now.isBefore(endDate, 'day')) {
-          console.log("event " + event.event + " is in the here and now");
+        } else if (now.isAfter(startDate) && now.isBefore(endDate)) {
+          if (debug) console.log("event " + event.event + " is in the here and now");
           targetDate = endDate;
           tag = "Ends";
         } else if (now.isAfter(endDate, 'day')) {
@@ -87,10 +99,12 @@ function updateCountdown() {
           return;
         } else {
           // this shouldn't happen...
-          console.log("oh no, you broke time again, didn't you?");
+          if (debug) console.log("oh no, you broke time again, didn't you?");
           return;
         }
-      
+        if (debug) console.log("target");
+        if (debug) console.log(targetDate);
+
         const duration = moment.duration(targetDate.diff(now));
         const days = duration.days();
         const hours = duration.hours();
@@ -103,15 +117,15 @@ function updateCountdown() {
       });
     big_nasty_html_string += '</div>';
     });
-  console.log(big_nasty_html_string);
+  if (debug) console.log(big_nasty_html_string);
   countdownContainer.html(big_nasty_html_string);
 }
 
 $(document).ready(function() {
-  console.log("document ready called"); 
+  if (debug) console.log("document ready called"); 
 
   userTimezone = getUserTimezone();
-  console.log("User's timezone:", userTimezone);
+  if (debug) console.log("User's timezone:", userTimezone);
 
   $.ajaxSetup({ cache: false });
   $.ajax({
