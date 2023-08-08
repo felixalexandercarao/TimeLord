@@ -184,6 +184,6 @@ $(document).ready(function() {
   });
   
   updateCountdown();
-//   setInterval(updateCountdown, 1000);
+  setInterval(updateCountdown, 1000);
 });
 
