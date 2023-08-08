@@ -42,6 +42,11 @@ Note that when specifying timezones, you will need to specify by their [TZ ident
 timezone by browsing through their in-game news/announcements, or ask around in the game's subreddit (or if all
 else fails, good old [/r/gachagaming](https://www.reddit.com/r/gachagaming/).)
 
+**IMPORTANT NOTE:** If you are trying to specify a timezone as a GMT offset (e.g. `GMT+9`),
+**you must flip the sign**. (so, e.g. `Etc/GMT-9`.)
+[It's a weird timezone database thing](https://stackoverflow.com/a/39781455).
+Yeah, this one totally didn't have me banging my head against a brick wall for hours on end.
+
 Once you've added/updated the event info you want to track, you'll need to get this code up onto the Web somehow.
 If you have a web server, just stick the files in a directory and Bob's your uncle. If you don't have a Web server,
 then you can "cheat" using GitHub Pages -- they will host it for free, with
