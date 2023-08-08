@@ -72,7 +72,7 @@ function updateCountdown() {
     And again<br />
     And again<br /></div>
   </div>
-*/    
+*/
     keys.forEach(function (game) {
       if (debug) console.log(game);
       const gameName = nameForGame(game);
@@ -85,25 +85,29 @@ function updateCountdown() {
       const gameTimezone = timezoneForGame(game);
       const dayReset = dayResetForGame(game);
       const dayResetDateString = getCurrentDate() + " " + dayReset;
-//       if (debug) console.log(dayResetDateString);
+      if (debug) console.log(dayResetDateString);
       
       var dayResetTime = moment.tz(dayResetDateString, gameTimezone);
-      var dayResetLocalTime = dayResetTime.clone().tz(userTimezone);
-      if (now.isAfter(dayResetLocalTime)) {
-//         if (debug) console.log("day reset is in the past, adding a day");
-        dayResetLocalTime.add(1, 'days');
+      var dayResetTime2;
+      if (now.isAfter(dayResetTime)) {
+        if (debug) console.log("day reset is in the past, adding a day");
+        // i'm not sure why we have to add 2 days here, but it works and I'm not asking questions
+        dayResetTime2 = dayResetTime.clone().add(2, 'days');
+      } else {
+        dayResetTime2 = dayResetTime.clone();
       }
+      const dayResetLocalTime = moment.tz(dayResetTime2, userTimezone);
 
-//       if (debug) console.log(dayResetTime);
-//       if (debug) console.log(dayResetLocalTime);
+      if (debug) console.log(dayResetTime);
+      if (debug) console.log(dayResetLocalTime);
       
-      const drHours = dayResetLocalTime.hours();
-      const drMinutes = dayResetLocalTime.minutes();
-      const drSeconds = dayResetLocalTime.seconds();
+      const drHours = dayResetLocalTime.hours().toString().padStart(2, '0');
+      const drMinutes = dayResetLocalTime.minutes().toString().padStart(2, '0');
+      const drSeconds = dayResetLocalTime.seconds().toString().padStart(2, '0');
       const tillNextDay = moment.duration(dayResetLocalTime.diff(now));
-      const drTillHours = tillNextDay.hours();
-      const drTillMinutes = tillNextDay.minutes();
-      const drTillSeconds = tillNextDay.seconds();
+      const drTillHours = tillNextDay.hours().toString().padStart(2, '0');
+      const drTillMinutes = tillNextDay.minutes().toString().padStart(2, '0');
+      const drTillSeconds = tillNextDay.seconds().toString().padStart(2, '0');
 
       // big_nasty_html_string += '<div class="row"><div class="col-md-6"><h2>' + gameName + '</h2></div><div class="col-md-6">';
 
