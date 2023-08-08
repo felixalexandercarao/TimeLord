@@ -111,7 +111,7 @@ function updateCountdown() {
 
       // big_nasty_html_string += '<div class="row"><div class="col-md-6"><h2>' + gameName + '</h2></div><div class="col-md-6">';
 
-      var gameHtmlString = '<div class="row"><div class="col"><h2>' + gameName + '</h2>Day Resets At: ' + drHours + ':' + drMinutes + ':' + drSeconds + '<br />In ' + drTillHours + ':' + drTillMinutes + ':' + drTillSeconds + '</div><div class="col">';
+      var gameHtmlString = `<div class="row"><div class="col"><h2>${gameName}</h2>Day Resets At: ${drHours}:${drMinutes}:${drSeconds}<br />In ${drTillHours}:${drTillMinutes}:${drTillSeconds}</div><div class="col">`;
 
       var foundEventsOfNote = false;
 
@@ -161,9 +161,11 @@ function updateCountdown() {
         const minutes = duration.minutes();
         const seconds = duration.seconds();
 
-        gameHtmlString += '<h3>' + event.event + '</h3><h5>';
-        gameHtmlString += tag + " in ";
-        gameHtmlString += `${days}d ${hours}h ${minutes}m ${seconds}s</h5>`;
+        if (days > 0) {
+          gameHtmlString += `<h3>${event.event}</h3><h5>${tag} in ${days}d ${hours}h ${minutes}m ${seconds}s</h5>`;
+        } else {
+          gameHtmlString += `<h3>${event.event}</h3><h5>${tag} in ${hours}h ${minutes}m ${seconds}s</h5>`;
+        }
       });
 
       gameHtmlString += '</div></div><br />';
