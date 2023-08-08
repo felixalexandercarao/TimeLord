@@ -23,7 +23,24 @@ function timezoneForGame(game) {
   if (game in allGames) {
     return allGames[game].timezone;
   } else {
-    console.log("ERROR: unknown game `" + game + "'")
+    if (debug) console.log("ERROR: unknown game `" + game + "'");
+    return null;
+  }
+}
+
+function getCurrentDate() {
+  const currentDate = new Date();
+  //return currentDate.getFullYear() + "-" + (currentDate.getMonth() + 1) + "-" + currentDate.getDate();
+  return currentDate.getFullYear() + '-'
+             + ('0' + (currentDate.getMonth()+1)).slice(-2) + '-'
+             + ('0' + currentDate.getDate()).slice(-2);
+}
+
+function dayResetForGame(game) {
+  if (game in allGames) {
+    return allGames[game].dayReset;
+  } else {
+    if (debug) console.log("ERROR: unknown game `" + game + "'");
     return null;
   }
 }
@@ -62,8 +79,33 @@ function updateCountdown() {
         return;
       }
 
+      // THIS IS DUMB AND IT DOES NOT WORK
+      const gameTimezone = timezoneForGame(game);
+      const dayReset = dayResetForGame(game);
+      const dayResetDateString = getCurrentDate() + " " + dayReset;
+//       if (debug) console.log(dayResetDateString);
+      
+      var dayResetTime = moment.tz(dayResetDateString, gameTimezone);
+      var dayResetLocalTime = dayResetTime.clone().tz(userTimezone);
+      if (now.isAfter(dayResetLocalTime)) {
+//         if (debug) console.log("day reset is in the past, adding a day");
+        dayResetLocalTime.add(1, 'days');
+      }
+
+//       if (debug) console.log(dayResetTime);
+//       if (debug) console.log(dayResetLocalTime);
+      
+      const drHours = dayResetLocalTime.hours();
+      const drMinutes = dayResetLocalTime.minutes();
+      const drSeconds = dayResetLocalTime.seconds();
+      const tillNextDay = moment.duration(dayResetLocalTime.diff(now));
+      const drTillHours = tillNextDay.hours();
+      const drTillMinutes = tillNextDay.minutes();
+      const drTillSeconds = tillNextDay.seconds();
+
       big_nasty_html_string += '<div class="row"><div class="col-md-6"><h2>' + gameName + '</h2></div><div class="col-md-6">';
-      const eventTimezone = timezoneForGame(game);
+
+//       big_nasty_html_string += '<div class="row"><div class="col-md-6"><h2>' + gameName + '</h2>Day Resets At: ' + drHours + ':' + drMinutes + ':' + drSeconds + '<br />In ' + drTillHours + ':' + drTillMinutes + ':' + drTillSeconds + '</div><div class="col-md-6">';
       allEvents[game].forEach(function (event) {
 //         if (debug) console.log(event);
         if (gameTimezone == null) {
@@ -94,9 +136,6 @@ function updateCountdown() {
           if (debug) console.log("event " + event.event + " is in the here and now");
           targetDate = endDate;
           tag = "Ends";
-        } else if (now.isAfter(endDate, 'day')) {
-          console.log("event " + event.event + " is but a distant memory");
-          return;
         } else {
           // this shouldn't happen...
           if (debug) console.log("oh no, you broke time again, didn't you?");
@@ -136,13 +175,15 @@ $(document).ready(function() {
         console.error('Error:', errorThrown);
       },
       success: function(data) {
-          console.log("Qapla!");
-          console.log(data); // I don't see this message in console
+          if (debug) console.log("Qapla!");
+          if (debug) console.log(data); // I don't see this message in console
           allGames = data.games;
           allEvents = data.events;
+          updateCountdown();
       }
   });
   
-  setInterval(updateCountdown, 1000);
+  updateCountdown();
+//   setInterval(updateCountdown, 1000);
 });
 
