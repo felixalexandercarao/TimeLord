@@ -7,8 +7,8 @@
     },
     "NIKKE": {
       "name": "GODDESS OF VICTORY: NIKKE",
-      "timezone": "Etc/GMT+9",
-      "dayReset": "04:00"
+      "timezone": "Etc/GMT-8",
+      "dayReset": "05:00"
     },
     "SIF2": {
       "name": "Love Live! School idol festival 2 MIRACLE LIVE!",
@@ -17,12 +17,12 @@
     },
     "SNOWBREAK": {
       "name": "Snowbreak: Containment Zone",
-      "timezone": "Etc/GMT+8",
+      "timezone": "Etc/GMT-8",
       "dayReset": "04:00"
     },
     "TEST": {
       "name": "Test Game",
-      "timezone": "Etc/GMT",
+      "timezone": "Asia/Tokyo",
       "dayReset": "00:00"
     }
   },
@@ -30,35 +30,35 @@
     "NIKKE": [
       {
         "event": "Summer Anis",
-        "start": "2023-08-03 04:59:59",
-        "end": "2023-08-24 04:59:59"
+        "start": "2023-08-03 04:59",
+        "end": "2023-08-24 04:59"
       },
       {
         "event": "Some Future Event",
-        "start": "2023-09-03 04:59:59",
-        "end": "2023-09-24 04:59:59"
+        "start": "2023-09-03 04:59",
+        "end": "2023-09-24 04:59"
       },
       {
         "event": "Some Past Event",
-        "start": "2023-06-03 04:59:59",
-        "end": "2023-06-24 04:59:59"
+        "start": "2023-06-03 04:59",
+        "end": "2023-06-24 04:59"
       }
     ],
     "TEST": [
       {
         "event": "Test Current Event",
-        "start": "2023-08-03 04:59:59",
-        "end": "2023-08-24 04:59:59"
+        "start": "2023-08-03 04:59",
+        "end": "2023-08-24 04:59"
       },
       {
         "event": "Test Future Event",
-        "start": "2023-09-03 04:59:59",
-        "end": "2023-09-24 04:59:59"
+        "start": "2023-09-03 04:59",
+        "end": "2023-09-24 04:59"
       },
       {
         "event": "Test Past Event",
-        "start": "2023-06-03 04:59:59",
-        "end": "2023-06-24 04:59:59"
+        "start": "2023-06-03 04:59",
+        "end": "2023-06-24 04:59"
       }
     ]
   }
