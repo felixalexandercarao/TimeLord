@@ -111,7 +111,10 @@ function updateCountdown() {
 
       // big_nasty_html_string += '<div class="row"><div class="col-md-6"><h2>' + gameName + '</h2></div><div class="col-md-6">';
 
-      big_nasty_html_string += '<div class="row"><div class="col-md-6"><h2>' + gameName + '</h2>Day Resets At: ' + drHours + ':' + drMinutes + ':' + drSeconds + '<br />In ' + drTillHours + ':' + drTillMinutes + ':' + drTillSeconds + '</div><div class="col-md-6">';
+      var gameHtmlString = '<div class="row"><div class="col"><h2>' + gameName + '</h2>Day Resets At: ' + drHours + ':' + drMinutes + ':' + drSeconds + '<br />In ' + drTillHours + ':' + drTillMinutes + ':' + drTillSeconds + '</div><div class="col">';
+
+      var foundEventsOfNote = false;
+
       allEvents[game].forEach(function (event) {
 //         if (debug) console.log(event);
         if (gameTimezone == null) {
@@ -135,10 +138,12 @@ function updateCountdown() {
           if (debug) console.log("event " + event.event + " is but a distant memory");
           return;
         } else if (now.isBefore(startDate)) {
+          foundEventsOfNote = true;
           if (debug) console.log("event " + event.event + " is in THE FUTURE (zura)");
           targetDate = startDate;
           tag = "Starts";
         } else if (now.isAfter(startDate) && now.isBefore(endDate)) {
+          foundEventsOfNote = true;
           if (debug) console.log("event " + event.event + " is in the here and now");
           targetDate = endDate;
           tag = "Ends";
@@ -156,11 +161,16 @@ function updateCountdown() {
         const minutes = duration.minutes();
         const seconds = duration.seconds();
 
-        big_nasty_html_string += '<h3>' + event.event + '</h3><h5>';
-        big_nasty_html_string += tag + " in ";
-        big_nasty_html_string += `${days}d ${hours}h ${minutes}m ${seconds}s</h5>`;
+        gameHtmlString += '<h3>' + event.event + '</h3><h5>';
+        gameHtmlString += tag + " in ";
+        gameHtmlString += `${days}d ${hours}h ${minutes}m ${seconds}s</h5>`;
       });
-    big_nasty_html_string += '</div>';
+
+      gameHtmlString += '</div></div>';
+
+      if (foundEventsOfNote) {
+        big_nasty_html_string += gameHtmlString;
+      }
     });
   if (debug) console.log(big_nasty_html_string);
   countdownContainer.html(big_nasty_html_string);
