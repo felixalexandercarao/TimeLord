@@ -166,7 +166,7 @@ function updateCountdown() {
         gameHtmlString += `${days}d ${hours}h ${minutes}m ${seconds}s</h5>`;
       });
 
-      gameHtmlString += '</div></div>';
+      gameHtmlString += '</div></div><br />';
 
       if (foundEventsOfNote) {
         big_nasty_html_string += gameHtmlString;
