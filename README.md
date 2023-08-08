@@ -32,6 +32,10 @@ So I was bored one night and though to myself "shouldn't there be a web app for 
 wasn't. (At least none that I could find.) And so I decided, right on the spot, to make one. (Yeah, I'm kinda
 impulsive like that...)
 
+**THIS CODE IS UGLY. YES, I WILL ADMIT IT.** Being a one-off personal project, this doesn't measure up to my
+paying-job-level quality control standards, and is coded in very much a "run and gun, shoot from the hip" ethos.
+You have been warned.
+
 ## How do I use this?
 
 You'll need to add information on the games you play, and the events you want to track, into the `events.json`
