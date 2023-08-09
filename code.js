@@ -1,6 +1,8 @@
-var userTimezone = "America/Los_Angeles";       // a sensible default
 var allGames = {};
 var allEvents = [];
+
+// should get timezone from the user's browser, but we need a default just in case that fails
+var userTimezone = "Etc/UTC";
 
 // only turn this on if you really like the idea of lots and lots of console spew
 const debug = false;
@@ -32,7 +34,6 @@ function timezoneForGame(game) {
 
 function getCurrentDate() {
   const currentDate = new Date();
-  //return currentDate.getFullYear() + "-" + (currentDate.getMonth() + 1) + "-" + currentDate.getDate();
   return currentDate.getFullYear() + '-'
              + ('0' + (currentDate.getMonth()+1)).slice(-2) + '-'
              + ('0' + currentDate.getDate()).slice(-2);
@@ -63,16 +64,6 @@ function updateCountdown() {
     countdownContainer.empty();
     const now = moment.tz(moment(), userTimezone); // Replace with your current timezone
 
-/*
-  <!--Row with two equal columns-->
-  <div class="row">
-    <div class="col-md-6">Column left</div>
-    <div class="col-md-6">
-    Column right<br />
-    And again<br />
-    And again<br /></div>
-  </div>
-*/
     keys.forEach(function (game) {
       if (debug) console.log(game);
       const gameName = nameForGame(game);
@@ -81,7 +72,7 @@ function updateCountdown() {
         return;
       }
 
-      // THIS IS DUMB AND IT DOES NOT WORK
+      // THIS IS DUMB (but it works, more or less)
       const gameTimezone = timezoneForGame(game);
       const dayReset = dayResetForGame(game);
       const dayResetDateString = getCurrentDate() + " " + dayReset;
@@ -109,14 +100,12 @@ function updateCountdown() {
       const drTillMinutes = tillNextDay.minutes().toString().padStart(2, '0');
       const drTillSeconds = tillNextDay.seconds().toString().padStart(2, '0');
 
-      // big_nasty_html_string += '<div class="row"><div class="col-md-6"><h2>' + gameName + '</h2></div><div class="col-md-6">';
-
       var gameHtmlString = `<div class="row"><div class="col"><h2>${gameName}</h2>Day Resets At: ${drHours}:${drMinutes}:${drSeconds}<br />In ${drTillHours}:${drTillMinutes}:${drTillSeconds}</div><div class="col">`;
 
       var foundEventsOfNote = false;
 
       allEvents[game].forEach(function (event) {
-//         if (debug) console.log(event);
+        if (debug) console.log(event);
         if (gameTimezone == null) {
           if (debug) console.log("could not look up timezone");
           return;
@@ -194,7 +183,7 @@ $(document).ready(function() {
       },
       success: function(data) {
           if (debug) console.log("Qapla!");
-          if (debug) console.log(data); // I don't see this message in console
+          if (debug) console.log(data);
           allGames = data.games;
           allEvents = data.events;
           updateCountdown();
