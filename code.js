@@ -105,6 +105,10 @@ function updateCountdown() {
       var foundEventsOfNote = false;
 
       allEvents[game].forEach(function (event) {
+        if ('hidden' in event && event.hidden) {
+          return;
+        }
+
         if (debug) console.log(event);
         if (gameTimezone == null) {
           if (debug) console.log("could not look up timezone");
