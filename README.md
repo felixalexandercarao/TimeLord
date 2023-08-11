@@ -15,6 +15,7 @@ TimeLord is a simple web-based mobile game event countdown timer. (Emphasis on t
 literally knocked this out in like 2 hours.)
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/S6S55A4V)
+If you find this app useful, please consider [buying me a Ko-fi](https://ko-fi.com/S6S55A4V).
 
 ## But why?
 
