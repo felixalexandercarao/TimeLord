@@ -183,7 +183,7 @@ $(document).ready(function() {
   if (debug) console.log("User's timezone:", userTimezone);
 
   $.ajaxSetup({ cache: false });
-  $.getJSON('exvents.json', function(data) {
+  $.getJSON('events.json', function(data) {
   }).done(function(data) {
     if (debug) console.log("JSON load successful");
     if (debug) console.log(data);
