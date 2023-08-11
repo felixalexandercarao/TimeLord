@@ -1,5 +1,5 @@
 var allGames = {};
-var allEvents = [];
+var allEvents = {};
 
 // should get timezone from the user's browser, but we need a default just in case that fails
 var userTimezone = "Etc/UTC";
@@ -35,8 +35,8 @@ function timezoneForGame(game) {
 function getCurrentDate() {
   const currentDate = new Date();
   return currentDate.getFullYear() + '-'
-             + ('0' + (currentDate.getMonth()+1)).slice(-2) + '-'
-             + ('0' + currentDate.getDate()).slice(-2);
+            + ('0' + (currentDate.getMonth()+1)).slice(-2) + '-'
+            + ('0' + currentDate.getDate()).slice(-2);
 }
 
 function dayResetForGame(game) {
@@ -49,18 +49,17 @@ function dayResetForGame(game) {
 }
 
 function updateCountdown() {
-    const keys = Object.keys(allEvents);
-    var big_nasty_html_string = "";
-    
-    if (keys.length == 0) {
-      if (debug) console.log("No events found");
-      // should probably put this in the html
-      return;
-    } else {
-      if (debug) console.log("Found " + keys.length + " games");
-    }
+  const keys = Object.keys(allEvents);
+  var foundEventsOfNote = false;
+  const countdownContainer = $("#main");
+  var big_nasty_html_string = "";
 
-    const countdownContainer = $("#main");
+  if (keys.length == 0) {
+    if (debug) console.log("No events found");
+    big_nasty_html_string = '<div class="row"><div class="col text-center"><h1>No Events Found</h1><h3>Ensure that the JSON file is properly formatted, then reload the page.</h3></div></div>';
+  } else {
+    if (debug) console.log("Found " + keys.length + " games");
+
     countdownContainer.empty();
     const now = moment.tz(moment(), userTimezone); // Replace with your current timezone
 
@@ -101,8 +100,6 @@ function updateCountdown() {
       const drTillSeconds = tillNextDay.seconds().toString().padStart(2, '0');
 
       var gameHtmlString = `<div class="row"><div class="col"><h2>${gameName}</h2>Day Resets At: ${drHours}:${drMinutes}:${drSeconds}<br />In ${drTillHours}:${drTillMinutes}:${drTillSeconds}</div><div class="col">`;
-
-      var foundEventsOfNote = false;
 
       allEvents[game].forEach(function (event) {
         if ('hidden' in event && event.hidden) {
@@ -169,8 +166,14 @@ function updateCountdown() {
         big_nasty_html_string += gameHtmlString;
       }
     });
-  if (debug) console.log(big_nasty_html_string);
-  countdownContainer.html(big_nasty_html_string);
+  }
+
+  if (foundEventsOfNote) {
+    if (debug) console.log(big_nasty_html_string);
+    countdownContainer.html(big_nasty_html_string);
+  } else {
+    countdownContainer.html('<div class="row"><div class="col text-center"><h1>No Events Found</h1><h3>Ensure that the JSON file is properly formatted, then reload the page.</h3></div></div>');
+  }
 }
 
 $(document).ready(function() {
@@ -180,22 +183,18 @@ $(document).ready(function() {
   if (debug) console.log("User's timezone:", userTimezone);
 
   $.ajaxSetup({ cache: false });
-  $.ajax({
-      type: 'GET',
-      url: 'events.json',
-      dataType: 'json',
-      error: function(jqXHR, textStatus, errorThrown) {
-        console.error('Error:', errorThrown);
-      },
-      success: function(data) {
-          if (debug) console.log("Qapla!");
-          if (debug) console.log(data);
-          allGames = data.games;
-          allEvents = data.events;
-          updateCountdown();
-      }
+  $.getJSON('events.json', function(data) {
+  }).done(function(data) {
+    if (debug) console.log("JSON load successful");
+    if (debug) console.log(data);
+    allGames = data.games;
+    allEvents = data.events;
+  }).fail(function(jqXHR, textStatus, errorThrown) {
+    console.error('JSON load error: ', errorThrown);
+    allGames = {};
+    allEvents = {};
   });
-  
+
   if (enableConstantUpdates) {
     setInterval(updateCountdown, 1000);
   } else {
