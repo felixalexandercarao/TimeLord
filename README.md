@@ -14,6 +14,8 @@ This work is licensed under a
 TimeLord is a simple web-based mobile game event countdown timer. (Emphasis on the word "simple" -- I
 literally knocked this out in like 2 hours.)
 
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/S6S55A4V)
+
 ## But why?
 
 So, yeah, I love mobile games. And I am insane enough to be playing several of them. And there's always a ton of
