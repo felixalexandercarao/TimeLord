@@ -50,20 +50,23 @@ function dayResetForGame(game) {
 
 function updateCountdown() {
   const keys = Object.keys(allEvents);
-  var foundEventsOfNote = false;
   const countdownContainer = $("#main");
+  var foundValidEvents = false;
   var big_nasty_html_string = "";
 
   if (keys.length == 0) {
     if (debug) console.log("No events found");
-    big_nasty_html_string = '<div class="row"><div class="col text-center"><h1>No Events Found</h1><h3>Ensure that the JSON file is properly formatted, then reload the page.</h3></div></div>';
+    countdownContainer.html('<div class="row"><div class="col text-center"><h1>No Data</h1><h3>Ensure that the JSON file is properly formatted, then reload the page.</h3></div></div>');
+    return;
   } else {
     if (debug) console.log("Found " + keys.length + " games");
 
     countdownContainer.empty();
     const now = moment.tz(moment(), userTimezone); // Replace with your current timezone
-
+    
     keys.forEach(function (game) {
+      var foundEventsOfNote = false;
+
       if (debug) console.log(game);
       const gameName = nameForGame(game);
       if (gameName == null) {
@@ -164,16 +167,17 @@ function updateCountdown() {
 
       if (foundEventsOfNote) {
         big_nasty_html_string += gameHtmlString;
+        foundValidEvents = true;
       }
     });
   }
 
-  if (!foundEventsOfNote) {
-    big_nasty_html_string = '<div class="row"><div class="col text-center"><h1>No Events Found</h1><h3>Ensure that the JSON file is properly formatted, then reload the page.</h3></div></div>';
-  }
-
   if (debug) console.log(big_nasty_html_string);
-  countdownContainer.html(big_nasty_html_string);
+  if (foundValidEvents) {
+    countdownContainer.html(big_nasty_html_string);
+  } else {
+    countdownContainer.html('<div class="row"><div class="col text-center"><h1>No Valid Events Found</h1><h3>All events have passed.</h3></div></div>');
+  }
 }
 
 $(document).ready(function() {
