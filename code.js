@@ -168,12 +168,12 @@ function updateCountdown() {
     });
   }
 
-  if (foundEventsOfNote) {
-    if (debug) console.log(big_nasty_html_string);
-    countdownContainer.html(big_nasty_html_string);
-  } else {
-    countdownContainer.html('<div class="row"><div class="col text-center"><h1>No Events Found</h1><h3>Ensure that the JSON file is properly formatted, then reload the page.</h3></div></div>');
+  if (!foundEventsOfNote) {
+    big_nasty_html_string = '<div class="row"><div class="col text-center"><h1>No Events Found</h1><h3>Ensure that the JSON file is properly formatted, then reload the page.</h3></div></div>';
   }
+
+  if (debug) console.log(big_nasty_html_string);
+  countdownContainer.html(big_nasty_html_string);
 }
 
 $(document).ready(function() {
@@ -183,7 +183,7 @@ $(document).ready(function() {
   if (debug) console.log("User's timezone:", userTimezone);
 
   $.ajaxSetup({ cache: false });
-  $.getJSON('events.json', function(data) {
+  $.getJSON('exvents.json', function(data) {
   }).done(function(data) {
     if (debug) console.log("JSON load successful");
     if (debug) console.log(data);
