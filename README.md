@@ -65,6 +65,14 @@ Just clone this repository on Github (set up a free Github account if you don't 
 Github Pages ([instructions can be found here](https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages)).
 Your event counter should now be accessible at `https://yourusername.github.io/TimeLord/`.
 
+## Troubleshooting
+
+The most common cause of problems is a badly formatted JSON file. You can paste your JSON file into this [online JSON validator](https://jsonlint.com/) and it should tell you where and how you need to fix it.
+
+Also, be sure all dates/times are formatted as `YYYY-MM-DD HH:MM` -- four digit year, and two digits each
+for month, day, hour and minute, with a leading zero if a number is less than 10, and time is in 24 hour
+format.
+
 ## TODO's
 
 - Needs to look nicer in general (but not TOO fancy)
